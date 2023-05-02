@@ -53,7 +53,7 @@ paths:
         - name: "id"
           in: "query"
           description: "ID do usuário a ser lido"
-          required: true
+          required: false
           type: "string"
       responses:
         200:

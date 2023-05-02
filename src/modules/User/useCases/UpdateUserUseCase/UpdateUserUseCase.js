@@ -5,10 +5,8 @@ class UpdateUserUseCase {
         this.userRepository = new UserRepository()
     }
     async execute({id, email, name, age}) {
-        console.log()
         if(await this.emailAlreadyExists(email)) throw { status: 500, message: "Email já cadastrado" }
-        if(!await this.userExists(id)) throw { status: 500, message: "Usuário não existe" }
-        console.log('use case')
+        if(!(await this.userExists(id))) throw { status: 500, message: "Usuário não existe" }
         return await this.userRepository.updateUser(id, email, name, age);
     }
 
@@ -18,7 +16,6 @@ class UpdateUserUseCase {
 
     async userExists(id) {
         const user = await this.userRepository.findUserById(id)
-        console.log(!!user)
         return !!user
     }
 }

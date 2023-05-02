@@ -11,7 +11,7 @@ class ReadUserUseCase {
         } else {
             user.push(await this.userRepository.findAllUsers())
         }
-        if(!(!!user)) {
+        if(!user) {
             throw {status: 404, message: "usuário não encontrado"}
         }
         return user
